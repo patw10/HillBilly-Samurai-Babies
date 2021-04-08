@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -19,9 +17,9 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if(spawntime <= 0)
+        if (spawntime <= 0)
         {
-            int rand1 = Random.Range(0,obstacle.Length);
+            int rand1 = Random.Range(0, obstacle.Length);
 
             //if (Random.value <= CrateChance && Random.value > CoinChance)
             //{
@@ -33,10 +31,10 @@ public class Spawner : MonoBehaviour
             //}
             //if (Random.value <= 0.8)
             //{
-                Instantiate(obstacle[rand1], transform.position, Quaternion.identity);
+            Instantiate(obstacle[rand1], transform.position, Quaternion.identity);
             //}
             spawntime = spawn;
-            if(spawn > mintime)
+            if (spawn > mintime)
             {
                 spawn -= decreseTime;
             }

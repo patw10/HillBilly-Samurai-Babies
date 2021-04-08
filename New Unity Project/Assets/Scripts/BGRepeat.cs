@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BGRepeat : MonoBehaviour
@@ -7,7 +5,8 @@ public class BGRepeat : MonoBehaviour
     public float speed;
     public float endx;
     public float startx;
-    void Update()
+
+    private void Update()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
 

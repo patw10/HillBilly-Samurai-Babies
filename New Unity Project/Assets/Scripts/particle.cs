@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class particle : MonoBehaviour
@@ -7,7 +5,7 @@ public class particle : MonoBehaviour
     private bool timerReached = true;
     private float timer = 0;
 
-    void Update()
+    private void Update()
     {
         timerReached = false;
         timer += Time.deltaTime;

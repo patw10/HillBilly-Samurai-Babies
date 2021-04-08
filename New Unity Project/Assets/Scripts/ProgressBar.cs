@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
-    [SerializeField] GameObject SpawnerComponent;
+    [SerializeField] private GameObject SpawnerComponent;
     public GameObject HealthBar;
     public GameObject progresBar;
-    Spawner spawner;
+    private Spawner spawner;
     public int maximum;
     private float fillAmount;
     public Image mask;
-    void Start()
+
+    private void Start()
     {
         spawner = SpawnerComponent.GetComponent<Spawner>();
         mask.material.SetColor("_Color", Color.white);
     }
-    void Update()
+
+    private void Update()
     {
         GetCurrentFill();
         if (spawner.spawned == 100)
@@ -27,7 +27,8 @@ public class ProgressBar : MonoBehaviour
             progresBar.SetActive(false);
         }
     }
-    void GetCurrentFill()
+
+    private void GetCurrentFill()
     {
         fillAmount = (float)spawner.spawned / (float)maximum;
         mask.fillAmount = fillAmount;

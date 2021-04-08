@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss_Spell : MonoBehaviour
@@ -10,17 +8,17 @@ public class Boss_Spell : MonoBehaviour
     public int speed;
     private int rand1;
     private int rand2;
-    Vector2 pos;
+    private Vector2 pos;
 
-    void Start()
+    private void Start()
     {
         anim = GetComponent<Animator>();
-        rand1= Random.Range(2, 9);
+        rand1 = Random.Range(2, 9);
         rand2 = Random.Range(0, obstacle.Length);
         pos = new Vector2(rand1, -2.65f);
     }
 
-    void Update()
+    private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, pos, speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, pos) < 0.2f)

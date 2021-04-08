@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwipeJump : MonoBehaviour
@@ -19,6 +17,8 @@ public class SwipeJump : MonoBehaviour
     private bool tap = false;
     private bool duck = false;
     private bool timerReached = true;
+    private float Absx;
+    private float Absy;
     private float timer = 0;
     public float speed = 6;
     public int health = 1;
@@ -43,15 +43,15 @@ public class SwipeJump : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        if (gameObject.transform.position.x !<= -7)
+        if (gameObject.transform.position.x! <= -7)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
-        if (Boss.active == false && gameObject.transform.position.x !<= 10)
+        if (Boss.active == false && gameObject.transform.position.x! <= 15)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
-        if (gameObject.transform.position.x >= 1)
+        if (gameObject.transform.position.x >= 14)
         {
             win.SetActive(true);
             Time.timeScale = 0;
@@ -70,12 +70,14 @@ public class SwipeJump : MonoBehaviour
             Instantiate(Effect, transform.position, Quaternion.identity);
         }
     }
+
     private void FixedUpdate()
     {
         JumpIfAllowed();
         DuckIfAllowed();
         Shoot();
     }
+
     private void SwipeCheck()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -85,22 +87,29 @@ public class SwipeJump : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             endTouchPosition = Input.GetTouch(0).position;
-            if (endTouchPosition.y > startTouchPosition.y && rb.velocity.y == 0) 
+            var Absx = Mathf.Abs(startTouchPosition.x - endTouchPosition.x);
+            var Absy = Mathf.Abs(startTouchPosition.y - endTouchPosition.y);
+
+            if (endTouchPosition.y > startTouchPosition.y && rb.velocity.y == 0 && Absy > 180)
             {
                 jumpallowed = true;
             }
-            if ((endTouchPosition == startTouchPosition))
+            if (endTouchPosition == startTouchPosition && Absx < 180 && Absy < 180)
             {
                 tap = true;
             }
-            if (endTouchPosition.y < startTouchPosition.y && rb.velocity.y == 0)
+            if (endTouchPosition.x > startTouchPosition.x && Absx > 180 && Absy < 180)
+            {
+                tap = true;
+            }
+            if (endTouchPosition.y < startTouchPosition.y && rb.velocity.y == 0 && Absy > 180)
             {
                 duck = true;
                 Instantiate(Effect, transform.position, Quaternion.identity);
-            }
-
+            } 
         }
     }
+
     private void JumpIfAllowed()
     {
         if (jumpallowed)
@@ -109,6 +118,7 @@ public class SwipeJump : MonoBehaviour
             jumpallowed = false;
         }
     }
+
     private void Shoot()
     {
         if (tap)
@@ -117,6 +127,7 @@ public class SwipeJump : MonoBehaviour
             tap = false;
         }
     }
+
     private void DuckIfAllowed()
     {
         if (duck == true)
@@ -134,6 +145,7 @@ public class SwipeJump : MonoBehaviour
             }
         }
     }
+
     private void Duck()
     {
         colider.size = new Vector2(colider.size.x, 1.922164f);

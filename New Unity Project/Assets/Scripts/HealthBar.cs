@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +5,22 @@ public class HealthBar : MonoBehaviour
 {
     public GameObject progressBar;
     public GameObject Boss;
-    Boss boss;
+    private Boss boss;
     public int maximum;
     private float fillAmount;
     public Image mask;
-    void Start()
+
+    private void Start()
     {
         boss = Boss.GetComponent<Boss>();
     }
-    void Update()
+
+    private void Update()
     {
         GetCurrentFill();
     }
-    void GetCurrentFill()
+
+    private void GetCurrentFill()
     {
         fillAmount = (float)boss.health / (float)maximum;
         mask.fillAmount = fillAmount;

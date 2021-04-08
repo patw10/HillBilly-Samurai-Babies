@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -16,47 +14,54 @@ public class Boss : MonoBehaviour
     public GameObject Spawner;
     public GameObject Spell;
     public GameObject SpellSpawner;
-    Spawner spawner;
-    void Start()
+    private Spawner spawner;
+
+    private void Start()
     {
         anim = GetComponent<Animator>();
         spawner = Spawner.GetComponent<Spawner>();
         waitTime = startWaitTime;
         randomSpot = Random.Range(0, moveSpots.Length);
     }
-    void Update()
+
+    private void Update()
     {
-        
-        if (spawner.spawned == 100 && spell != 1 && spell != 4 && spell != 7 && spell != 10 && spell != 13)
+        if (spawner.spawned == 100)
         {
-            Fight();
-        }
-        if (spawner.spawned == 100 && spell == 1)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
-        }
-        if (spawner.spawned == 100 && spell == 4)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
-        }
-        if (spawner.spawned == 100 && spell == 7)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
-        }
-        if (spawner.spawned == 100 && spell == 10)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
-        }
-        if (spawner.spawned == 100 && spell == 13)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
+            switch (spell)
+            {
+                default:
+                    Fight();
+                    break;
+
+                case 5:
+                    transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
+                    break;
+
+                case 11:
+                    transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
+                    break;
+
+                case 17:
+                    transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
+                    break;
+
+                case 23:
+                    transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
+                    break;
+
+                case 29:
+                    transform.position = Vector2.MoveTowards(transform.position, Killspot.position, speed * Time.deltaTime);
+                    break;
+            }
         }
         if (health == 0)
         {
             gameObject.SetActive(false);
         }
     }
-    void Fight()
+
+    private void Fight()
     {
         transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
@@ -75,6 +80,7 @@ public class Boss : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.tag)

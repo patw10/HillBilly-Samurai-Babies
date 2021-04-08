@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
@@ -10,6 +8,7 @@ public class Enemy2 : MonoBehaviour
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.tag)
@@ -17,9 +16,11 @@ public class Enemy2 : MonoBehaviour
             case "Finish":
                 Destroy(gameObject);
                 break;
+
             case "Player":
                 other.GetComponent<SwipeJump>().health = 0;
                 break;
+
             case "Projectile":
                 Destroy(gameObject);
                 break;

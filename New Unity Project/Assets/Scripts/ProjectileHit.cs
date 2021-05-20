@@ -17,7 +17,6 @@ public class ProjectileHit : MonoBehaviour
                 break;
 
             case "Boss":
-                other.GetComponent<Boss>().health--;
                 Destroy(gameObject);
                 break;
         }

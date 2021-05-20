@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour
                 break;
 
             case "Player":
-                Ui_Coin.instance.ChangeScore(coinValue);
+                Ui_Script.Coin.ChangeScore(coinValue);
                 break;
         }
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public int health;
+    public int Bosshealth = 5;
     public float speed;
     public int spell = 0;
     private float waitTime;
@@ -15,6 +15,7 @@ public class Boss : MonoBehaviour
     public GameObject Spell;
     public GameObject SpellSpawner;
     private Spawner spawner;
+    
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
-        if (spawner.spawned == 100)
+        if (spawner.spawned == 70)
         {
             switch (spell)
             {
@@ -55,7 +56,7 @@ public class Boss : MonoBehaviour
                     break;
             }
         }
-        if (health == 0)
+        if (Bosshealth <= 0)
         {
             gameObject.SetActive(false);
         }
@@ -86,6 +87,7 @@ public class Boss : MonoBehaviour
         switch (other.tag)
         {
             case "Projectile":
+                Bosshealth--;
                 spell++;
                 break;
         }

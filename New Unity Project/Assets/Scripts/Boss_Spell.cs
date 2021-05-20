@@ -13,7 +13,7 @@ public class Boss_Spell : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        rand1 = Random.Range(2, 9);
+        rand1 = Random.Range(4, 10);
         rand2 = Random.Range(0, obstacle.Length);
         pos = new Vector2(rand1, -2.65f);
     }

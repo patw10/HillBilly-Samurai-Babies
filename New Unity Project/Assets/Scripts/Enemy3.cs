@@ -18,7 +18,7 @@ public class Enemy3 : MonoBehaviour
                 break;
 
             case "Player":
-                other.GetComponent<SwipeJump>().health = 0;
+                other.GetComponent<Control>().health = 0;
                 break;
         }
     }

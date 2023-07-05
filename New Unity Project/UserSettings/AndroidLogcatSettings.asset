@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "9WV4C18908032686",
+    "m_SelectedDeviceId": "RF8R81WDM9Z",
     "m_SelectedPackage": {
-        "deviceId": "9WV4C18908032686",
-        "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 24461,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -505,6 +505,42 @@
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 24461,
             "exited": false
+        },
+        {
+            "deviceId": "RF8R81WDM9Z",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 11106,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R81WDM9Z",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 11866,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R81WDM9Z",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 12200,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R81WDM9Z",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 12560,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R81WDM9Z",
+            "name": "com.sec.android.app.launcher",
+            "processId": 3761,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8R81WDM9Z",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 13062,
+            "exited": true
         }
     ],
     "m_Tags": {

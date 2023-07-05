@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Control : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Control : MonoBehaviour
     public bool Tap, swipeRight, swipeUp, swipeDown, swipeLeft;
     public bool isDraging;
     public Vector2 startTouch, swipeDelta;
+    private PlayerInput playerinput;
+    private InputAction touchTap;
 
     private void Start()
     {
@@ -34,6 +37,8 @@ public class Control : MonoBehaviour
         colider = GetComponent<CapsuleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         Time.timeScale = 1;
+        playerinput = GetComponent<PlayerInput>();
+        touchTap = playerinput.actions["TouchPress"];
     }
 
     private void Update()
@@ -77,17 +82,17 @@ public class Control : MonoBehaviour
     }
     private void TapCheck()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began)
         {
             startTouchPosition = Input.GetTouch(0).position;
         }
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == UnityEngine.TouchPhase.Ended)
         {
             endTouchPosition = Input.GetTouch(0).position;
-            var Absx = Mathf.Abs(startTouchPosition.x - endTouchPosition.x);
-            var Absy = Mathf.Abs(startTouchPosition.y - endTouchPosition.y);
+            var absx = Mathf.Abs(startTouchPosition.x - endTouchPosition.x);
+            var absy = Mathf.Abs(startTouchPosition.y - endTouchPosition.y);
 
-            if (endTouchPosition == startTouchPosition && Absx < 180 && Absy < 180)
+            if (touchTap.triggered && absx < 120 && absy < 120)
             {
                 Tap = true;
             }
@@ -99,12 +104,12 @@ public class Control : MonoBehaviour
 
         if (Input.touches.Length > 0)
         {
-            if (Input.touches[0].phase == TouchPhase.Began)
+            if (Input.touches[0].phase == UnityEngine.TouchPhase.Began)
             {
                 isDraging = true;
                 startTouch = Input.touches[0].position;
             }
-            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+            else if (Input.touches[0].phase == UnityEngine.TouchPhase.Ended || Input.touches[0].phase == UnityEngine.TouchPhase.Canceled)
             {
                 isDraging = false;
                 Reset();
@@ -126,7 +131,7 @@ public class Control : MonoBehaviour
 
             if (Mathf.Abs(x) > Mathf.Abs(y))
             {
-                if (x > 0 && TapCooldown > 0.5f)
+                if (x > 0 && TapCooldown > 0.6f)
                 {
                     swipeRight = true;
                 }
@@ -137,7 +142,7 @@ public class Control : MonoBehaviour
             }
             else
             {
-                if (y < 0 && DuckCooldown > 0.75f)
+                if (y < 0 && DuckCooldown > 0.5f)
                 {
                     swipeDown = true;
                     Instantiate(Effect, transform.position, Quaternion.identity);
@@ -169,7 +174,7 @@ public class Control : MonoBehaviour
 
     private void Shoot()
     {
-        if (Tap || swipeRight || tap)
+        if (Tap || tap)
         {
             Instantiate(Pr, Spawn.transform.position, Quaternion.identity);
             Tap = false;
@@ -187,7 +192,7 @@ public class Control : MonoBehaviour
             timerReached = false;
             timer += Time.deltaTime;
             DuckCooldown = 0;
-            if (!timerReached && timer > 0.75f)
+            if (!timerReached && timer > 0.6f)
             {
                 Duck();
                 timer = 0;

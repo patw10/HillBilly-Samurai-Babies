@@ -1,0 +1,79 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "09dcd076-ccd0-4221-8b09-eee3f2b14c8c",
+            "actions": [
+                {
+                    "name": "TouchPress",
+                    "type": "Button",
+                    "id": "fd93ea75-ef7b-4550-9182-46696cb3bbec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e34149f7-b9f7-4064-a341-0803e2a2543b",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Swipe",
+            "id": "9b10e76c-ef25-463a-9570-d86c4b0b2e53",
+            "actions": [
+                {
+                    "name": "PrimaryContact",
+                    "type": "PassThrough",
+                    "id": "bc50bb1c-57e0-4ade-8e13-6b202f7874be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PrimaryPosition",
+                    "type": "PassThrough",
+                    "id": "71c89c0d-0f12-490e-a4fc-5bd27e9524c8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1cca489c-3ded-4a58-96fe-e4300f7d3f5e",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryContact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09f9b5e1-08ed-43b7-8f11-6eeadfc9f00d",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

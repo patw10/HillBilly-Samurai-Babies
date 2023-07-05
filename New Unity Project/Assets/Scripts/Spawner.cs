@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
     private float spawntime;
     public float spawn;
     public float decreseTime;
-    public float mintime = 0.70f;
+    public float mintime = 0.80f;
     public int spawned = 0;
 
     private void Update()

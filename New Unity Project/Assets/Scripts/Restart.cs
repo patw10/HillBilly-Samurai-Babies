@@ -7,4 +7,8 @@ public class Restart : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void GoToMenu()
+    { 
+        Ui_Script.Coin.LoadMenuWin();
+    }
 }

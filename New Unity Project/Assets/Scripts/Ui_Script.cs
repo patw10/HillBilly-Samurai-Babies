@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,7 +22,9 @@ public class Ui_Script : MonoBehaviour
     public Text Coin_text;
     public Image progresBar;
     public Image healthBar;
-    private int score;
+    public int score;
+    public int winScore;
+    public int coins;
     public float startWaitTime;
     public bool GamePaused;
     public bool GP;
@@ -80,6 +83,8 @@ public class Ui_Script : MonoBehaviour
             else if (gameIsWon)
             {
                 Win.SetActive(true);
+                coins = int.Parse(File.ReadAllText(Application.persistentDataPath + "/CoinScore.txt"));
+                winScore = coins + score;
             }
             else if (GamePaused && isDead)
             {
@@ -131,5 +136,12 @@ public class Ui_Script : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
+        GamePaused = false;
+    }
+    public void LoadMenuWin()
+    {
+        SceneManager.LoadScene("Menu");
+        GamePaused = false;
+        File.WriteAllText(Application.persistentDataPath + "/CoinScore.txt", winScore.ToString());
     }
 }
